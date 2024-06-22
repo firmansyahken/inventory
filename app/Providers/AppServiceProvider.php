@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +25,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Gate::define('super-user', function (User $user) {
+            return $user->level == 1;
+        });
+        Gate::define('pengendali-gudang', function (User $user) {
+            return $user->level == 1;
+        });
+        Gate::define('kepala-unit-invetory', function (User $user) {
+            return $user->level == 1;
+        });
     }
 }
