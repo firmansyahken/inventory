@@ -24,12 +24,13 @@ use App\Http\Controllers\InventoryOutController;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard.app');
-})->name("dashboard");
+
 
 // bikin route grup auth
 Route::middleware("auth")->group(function () {
+    Route::get('/', function () {
+        return view('dashboard.app');
+    })->name("dashboard");
     Route::resource("/category", CategoryController::class);
     Route::resource("/item", ItemController::class);
     Route::resource("/supplier", SupplierController::class);
@@ -44,7 +45,7 @@ Route::middleware("auth")->group(function () {
 
 
 
-Route::get("/login", [AuthController::class, "auth"])->middleware("guest");
+Route::get("/login", [AuthController::class, "auth"])->middleware("guest")->name("login");
 Route::post("/login", [AuthController::class, "authenticate"]);
 
 Route::get("/logout", [AuthController::class, "logout"]);
