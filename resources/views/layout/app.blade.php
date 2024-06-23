@@ -106,73 +106,133 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-box"></i>
-                                <p>
-                                    Barang
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="/item" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Daftar Barang</p>
+                            @can('pengendali-inventory')
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-box"></i>
+                                    <p>
+                                        Barang
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="/item" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Daftar Barang</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/category" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Kategori Barang</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/unit" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Satuan</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endcan
+                        @can('kepala-unit-inventory')
+                            <li class="nav-item">
+                                <a href="/supplier" class="nav-link">
+                                    <i class="nav-icon fas fa-truck"></i>
+                                    <p>
+                                        Supplier
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="/warehouse" class="nav-link">
+                                    <i class="nav-icon fas fa-home"></i>
+                                    <p>
+                                        Gudang
+                                    </p>
+                                </a>
+                            </li>
+                        @endcan
+                        @if (auth()->user()->level == 2 || auth()->user()->level == 3)
+                            <li class="nav-item">
+                                @can('pengendali-inventory')
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-credit-card"></i>
+                                        <p>
+                                            Transaksi
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
                                     </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/category" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Kategori Barang</p>
+                                @endcan
+                                @can('kepala-unit-inventory')
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-credit-card"></i>
+                                        <p>
+                                            Laporan
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
                                     </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/unit" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Satuan</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/warehouse" class="nav-link">
-                                <i class="nav-icon fas fa-home"></i>
-                                <p>
-                                    Gudang
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/supplier" class="nav-link">
-                                <i class="nav-icon fas fa-truck"></i>
-                                <p>
-                                    Supplier
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-credit-card"></i>
-                                <p>
-                                    Transaksi
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="/checkin" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Barang Masuk</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/checkout" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Barang Keluar</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                                @endcan
+
+
+                                @can('kepala-unit-inventory')
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Laporan Barang</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Laporan Barang Masuk</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Laporan Barang Keluar</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Laporan Barang Pindah</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                @endcan
+
+
+                                @can('pengendali-inventory')
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="/checkin" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Barang Masuk</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="/checkout" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Barang Keluar</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="/mutation" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Pemindahan Barang</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                @endcan
+                            </li>
+                        @endif
+
+
                         @can('super-user')
                             <li class="nav-item">
                                 <a href="/user" class="nav-link">

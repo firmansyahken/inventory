@@ -28,11 +28,11 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('super-user', function (User $user) {
             return $user->level == 1;
         });
-        Gate::define('pengendali-gudang', function (User $user) {
-            return $user->level == 1;
+        Gate::define('pengendali-inventory', function (User $user) {
+            return $user->level == 3;
         });
-        Gate::define('kepala-unit-invetory', function (User $user) {
-            return $user->level == 1;
-        });
+        Gate::define('kepala-unit-inventory', function (User $user) {
+            return $user->level == 2;
+        });;
     }
 }
