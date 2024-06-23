@@ -28,19 +28,23 @@ Route::get('/', function () {
     return view('dashboard.app');
 })->name("dashboard");
 
-Route::resource("/category", CategoryController::class);
-Route::resource("/item", ItemController::class);
-Route::resource("/supplier", SupplierController::class);
-Route::resource("/unit", UnitController::class);
-Route::resource("/warehouse", WarehouseController::class);
-Route::resource("/user", UserController::class);
-Route::resource("/checkin", InventoryInController::class);
-Route::get("/checkout", [InventoryOutController::class, "index"]);
-Route::get("/checkout/{id}", [InventoryOutController::class, "create"]);
-Route::post("/checkout/{id}", [InventoryOutController::class, "checkout"]);
+// bikin route grup auth
+Route::middleware("auth")->group(function () {
+    Route::resource("/category", CategoryController::class);
+    Route::resource("/item", ItemController::class);
+    Route::resource("/supplier", SupplierController::class);
+    Route::resource("/unit", UnitController::class);
+    Route::resource("/warehouse", WarehouseController::class)->middleware("kepala_gudang");
+    Route::resource("/user", UserController::class);
+    Route::resource("/checkin", InventoryInController::class);
+    Route::get("/checkout", [InventoryOutController::class, "index"]);
+    Route::get("/checkout/{id}", [InventoryOutController::class, "create"]);
+    Route::post("/checkout/{id}", [InventoryOutController::class, "checkout"]);
+});
 
 
-Route::get("/login", [AuthController::class, "auth"])->name("login");
+
+Route::get("/login", [AuthController::class, "auth"])->middleware("guest");
 Route::post("/login", [AuthController::class, "authenticate"]);
-Route::get("/logout", [AuthController::class, "logout"]);
 
+Route::get("/logout", [AuthController::class, "logout"]);

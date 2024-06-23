@@ -80,7 +80,16 @@
             <div class="sidebar">
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="info">
-                        <a href="#" class="d-block">Nama Role</a>
+                        <a href="#" class="d-block">
+                            {{ auth()->user()->name }},
+                            @if (auth()->user()->level == 1)
+                                Super User
+                            @elseif(auth()->user()->level == 2)
+                                Kepala Unit
+                            @elseif(auth()->user()->level == 3)
+                                Pengendali Gudang
+                            @endif
+                        </a>
                     </div>
                 </div>
 
