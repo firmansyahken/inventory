@@ -16,7 +16,7 @@ class PengendaliGudang
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->role != 3) {
+        if (auth()->user()->level != 3) {
             return abort(403);
         }
         return $next($request);
